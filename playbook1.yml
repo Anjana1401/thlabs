@@ -1,0 +1,26 @@
+---
+#which apache2
+- name: install httpd packages abd update sample webpage and start service
+  hosts: all
+  become: yes #root user using to execute
+  tasks:
+   - name: Update all pacjages to their latest version
+     apt:
+      name: "*"
+      state: latest
+   - name: install apache2 httpd (state=present is optional)
+     apt:
+      name: apache2
+      state: present 
+   - name: copy index test page
+     copy:
+      src: "index.html"
+      dest: "/var/www/html/index.html"
+      force: yes
+   - name: Restart Apache
+     service: 
+      name: apache2
+      state: restarted
+      
+    
+              

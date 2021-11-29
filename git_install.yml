@@ -1,0 +1,12 @@
+---
+- name: Install git on all nodes
+  hosts: all
+  become: yes
+  tasks:
+   - name: Install git
+     apt:
+      name: git
+      state: present
+      update_cache: yes
+      
+   - name: Add Several users  
